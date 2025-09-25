@@ -1,0 +1,162 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+/* extra small */
+html, body {
+  background-color: var(--color-dark-purple);
+  background: url("bg_blurred_swirls_mobile.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  min-height: 100vh;
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+}
+
+.content-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: var(--pad-0);
+  padding-bottom: var(--pad-0);
+  padding-left: var(--pad-base);
+  padding-right: var(--pad-base);
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+main {
+  flex-grow: 1;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#error_explanation {
+  margin-bottom: var(--margin-base);
+  padding: var(--pad-base);
+}
+
+#error_explanation ul li {
+  background-image: none;
+  list-style: disc;
+  margin-left: var(--margin-xl);
+  font-size: 1rem;
+  padding-left: var(--pad-0);
+}
+
+.flash {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  padding-bottom: var(--pad-sm);
+  padding-top: var(--pad-xs);
+  text-transform: lowercase;
+}
+
+.flash.notice {
+  background-color: var(--color-magenta);
+}
+
+.flash.alert {
+  background-color: var(--color-red);
+}
+
+a {
+  color: var(--color-lime);
+}
+
+a:hover {
+  color: var(--color-sky);
+}
+
+a i {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: var(--margin-0);
+  padding: var(--pad-0);
+}
+
+ul li {
+  letter-spacing: 0.8px;
+  padding-bottom: var(--pad-0);
+  text-align: left;
+}
+
+/* small */
+@media (min-width: 576px) {
+  html, body {
+    background: url("bg_blurred_swirls.jpg");
+    background-attachment: fixed;
+  }
+
+  .container {
+    max-width: 576px;
+  }
+}
+
+/* medium */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+
+  main {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* large */
+@media (min-width: 992px) {
+  .container {
+    max-width: 992px;
+  }
+
+  #error_explanation {
+    margin-bottom: var(--margin-base);
+    padding: var(--pad-base);
+  }
+
+  ul li {
+    font-size: 1.3rem;
+  }
+}
+
+/* extra large */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}

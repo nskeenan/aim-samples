@@ -1,0 +1,89 @@
+ /* extra small */
+#home .nick_face {
+  display: block;
+  height: auto;
+  margin: auto;
+  padding-bottom: var(--pad-xl);
+  width: 100%;
+}
+
+#home .links-wrapper {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+#home .greet {
+  position: relative;
+}
+
+#home .greet::before {
+  background-image: url("home_quote_tail_full.png");
+  content: "";
+  height: 45px;
+  left: 60px;
+  opacity: 0.5;
+  position: absolute;
+  top: -44.8px;
+  width: 45px;
+}
+
+#home .quote {
+  margin-top: var(--margin-md);
+  font-size: 1rem;
+  font-style: italic;
+  padding-bottom: var(--pad-base);
+  color: var(--color-light-gray);
+}
+
+/* small */
+@media (min-width: 576px) {
+  #home .nick_face {
+    width: 100%;
+  }
+}
+
+/* medium */
+@media (min-width: 768px) {
+  #home .nick_face {
+    width: 325px;
+    padding-bottom: 30px;
+  }
+}
+
+/* large */
+@media (min-width: 992px) {
+  #home .nick_face {
+    width: 500px;
+    padding-bottom: 3rem;
+  }
+
+  #home .links-wrapper {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  #home .about {
+    width: 80%;
+  }
+
+  #home .links {
+    width: 20%;
+  }
+
+  #home .greet::before {
+    height: 60px;
+    left: 385px;
+    top: -59.8px;
+    width: 60px;
+  }
+
+  #home br.mobile {
+    display: none;
+  }
+}
+
+/* extra large */
+@media (min-width: 1200px) {
+
+}

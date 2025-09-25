@@ -1,0 +1,78 @@
+.button, .link {
+  --button-font-size: 1rem;
+  --button-padding: 0.4em 1.3em;
+  --button-bg: var(--color-light-gray);
+  --button-color: var(--color-white);
+  --button-border-radius: 25px;
+  --button-border-color: var(--color-light-gray);
+
+  background: var(--button-bg);
+  border-radius: var(--button-border-radius);
+  border: none;
+  box-sizing: border-box;
+  color: var(--button-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: var(--button-font-size);
+  font-weight: 600;
+  margin: 10px 0px;
+  padding: var(--button-padding);
+  text-align: center;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: background 0.2s;
+}
+
+/* Size modifiers */
+.button-sm, .link-sm {
+  --button-font-size: 0.85rem;
+  --button-padding: 0.25em 0.75em;
+}
+.button-large, .link-large {
+  --button-font-size: 1.2rem;
+  --button-padding: 0.75em 2em;
+}
+
+/* Variant (color) modifiers */
+.button-primary, .link-primary {
+  --button-bg: var(--color-magenta);
+}
+
+.button-secondary, .link-secondary {
+  --button-bg: var(--color-lime);
+}
+
+.button-text, .link-text {
+  --button-bg: none;
+  --button-color: var(--color-lime);
+  --button-border-color: none;
+  text-decoration: underline;
+  border-radius: 0%;
+  padding-left: var(--pad-0);
+}
+
+.button-text-secondary, .link-text-secondary {
+  --button-bg: none;
+  --button-color: var(--color-light-gray);
+  --button-border-color: none;
+  text-decoration: underline;
+  border-radius: 0%;
+  padding-left: var(--pad-0);
+}
+
+.button-danger, .link-danger {
+  --button-bg: var(--color-red);
+}
+
+/* Full-width modifier */
+.button-block, .link-block {
+  display: block;
+  width: 100%;
+}
+
+/* Hover: Lighten the background color */
+.button:hover, .link:hover {
+  /* background: var(--color-transparent-lime); */
+  color: var(--color-sky);
+}

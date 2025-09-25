@@ -1,0 +1,14 @@
+:root {
+  --color-white: #FFF;
+  --color-light-gray: #bcbbbb;
+  --color-black: #000;
+  --color-dark-purple: #1a182a;
+  --color-light-purple: #302C4D;
+  --color-opaque-purple: #1a182a80;
+  --color-lime: #65F095;
+  --color-transparent-lime: #65F09520;
+  --color-sky: #67BEFF;
+  --color-transparent-sky: #67BEFF20;
+  --color-magenta: #A6009D;
+  --color-red: #FB233D;
+}

@@ -1,0 +1,102 @@
+ /* extra small */
+header {
+  background-color: var(--color-opaque-purple);
+  color: var(--color-white);
+  padding-top: var(--pad-base);
+  padding-bottom: var(--pad-base);
+}
+
+header nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+header .brand {
+  display: flex;
+  justify-content: space-between;
+}
+
+header .brand a {
+  display: inline-block;
+  line-height: 0px;
+  vertical-align: middle;
+}
+
+header .brand .nickatnighte_title {
+  height: 36px;
+  padding-left: 5px;
+}
+
+header .brand .full_title {
+  display: none;
+}
+
+header ul.navbar {
+  /* display: none; */
+  padding: var(--pad-0);
+}
+
+header ul.navbar li {
+  display: inline-block;
+  padding-left: var(--pad-lg);
+}
+
+header nav .flip-container {
+  height: 36px;
+  margin: 0px auto;
+  perspective: 150px;
+  width: 36px;
+}
+
+header nav .flip-container .flipper {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  width: 100%;
+}
+
+header nav .flip-container:hover .flipper {
+  transform: rotateY(180deg);
+}
+
+header nav .flip-container .front,
+header nav .flip-container .back {
+  backface-visibility: hidden;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+header nav .flip-container .back {
+  transform: rotateY(180deg);
+}
+
+/* small */
+@media (min-width: 576px) {
+  header .brand .full_title {
+    display: inline;
+  }
+
+  header .brand .short_title {
+    display: none;
+  }
+}
+
+/* large */
+@media (min-width: 992px) {
+  header ul.navbar li {
+    padding-right: var(--pad-xs);
+  }
+
+  header nav .flip-container {
+    height: 50px;
+    width: 50px;
+  }
+
+  header .brand .nickatnighte_title {
+    height: 50px;
+    padding-left: 5px;
+  }
+}

@@ -1,0 +1,138 @@
+ /* extra small */
+#quotes .title {
+  position: relative;
+}
+
+#quotes #new-quote {
+  position: absolute;
+  top: 1px;
+  right: 0;
+}
+
+#quotes .admin {
+  align-items: normal;
+  max-width: 100%;
+}
+
+#quotes .quotes {
+  position: relative;
+  align-items: normal;
+}
+
+#quotes .p-wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+#quotes .quote {
+  position: relative;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--pad-lg);
+}
+
+#quotes .info {
+  background: none;
+  text-align: left;
+  width: 100%;
+}
+
+#quotes .menu-links a {
+  margin-right: var(--margin);
+}
+
+#quotes .menu-links form {
+  display: inline-block;
+}
+
+#quotes a.link {
+  text-decoration: none;
+}
+
+#quotes span.icon-text {
+  text-decoration: underline;
+}
+
+#quotes button {
+  text-decoration: none;
+}
+
+#quotes .quotes::before {
+  background-image: url("quotes_bubble_tail.png");
+  background-repeat: no-repeat;
+  bottom: -30px;
+  content: "";
+  height: 30px;
+  opacity: 0.5;
+  position: absolute;
+  right: 20px;
+  width: 30px;
+}
+
+/* #quotes .quote::before {
+  background-color: var(--color-magenta);
+  top: 0px;
+  content: '"';
+  font-size: 120px;
+  line-height: 120px;
+  padding: 15px;
+  height: 60px;
+  position: absolute;
+  left: 0px;
+  width: 60px;
+  color: var(--color-lime);
+} */
+
+#quotes .quote::after {
+  background-image: url("quote_bubble_tail_large.png");
+  background-repeat: no-repeat;
+  bottom: -59.9px;
+  content: "";
+  height: 60px;
+  opacity: 0.5;
+  position: absolute;
+  right: 15px;
+  width: 60px;
+}
+
+#quotes span.label {
+  font-size: 0.85rem;
+  text-transform: lowercase;
+}
+
+#quotes .island-wrapper {
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-around;
+}
+
+/* large */
+@media (min-width: 992px) {
+  #quotes #new-quote {
+    top: 12px;
+  }
+
+  #quotes .admin {
+    max-width: 80%;
+  }
+
+  #quotes .quote {
+    padding: 2.4rem;
+    max-width: 80%;
+  }
+
+  #quotes .p-wrapper {
+    width: 80%;
+  }
+
+  #quotes .info {
+    max-width: 80%;
+  }
+
+  #quotes .quotes {
+    min-width: 18%;
+    max-width: 50%;
+  }
+}

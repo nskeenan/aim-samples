@@ -1,0 +1,11 @@
+ /* extra small */
+footer {
+  background-color: var(--color-opaque-purple);
+  color: var(--color-light-gray);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding-bottom: var(--pad-base);
+  padding-top: var(--pad-base);
+  position: static;
+  text-align: center;
+}

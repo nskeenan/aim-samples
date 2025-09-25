@@ -1,0 +1,61 @@
+:root {
+  --margin-0: 0rem; /* 0px */
+  --margin-xs: 0.6rem; /* 10.8px */
+  --margin-sm: 0.8rem; /* 14.4px */
+  --margin-base: 1rem; /* 18px */
+  --margin-md: 1.2rem; /* 21.6px */
+  --margin-lg: 1.4rem; /* 25.2px */
+  --margin-xl: 1.8rem; /* 32.4px */
+  --margin-xxl: 3.6rem; /* 64.8px */
+  --margin-xxxl: 5rem; /* 90px */
+  --margin-4xl: 7.2rem; /* 129.6px */
+}
+
+.mt-0 {margin-top: var(--margin-0);}
+.mt-xs {margin-top: var(--margin-xs);}
+.mt-sm {margin-top: var(--margin-sm);}
+.mt {margin-top: var(--margin-base);}
+.mt-md {margin-top: var(--margin-md);}
+.mt-lg {margin-top: var(--margin-lg);}
+.mt-xl {margin-top: var(--margin-xl);}
+.mt-xxl {margin-top: var(--margin-xxl);}
+.mt-xxxl {margin-top: var(--margin-xxxl);}
+.mt-4xl {margin-top: var(--margin-4xl);}
+
+.mb-0 {margin-bottom: var(--margin-0);}
+.mb-xs {margin-bottom: var(--margin-xs);}
+.mb-sm {margin-bottom: var(--margin-sm);}
+.mb {margin-bottom: var(--margin-base);}
+.mb-md {margin-bottom: var(--margin-md);}
+.mb-lg {margin-bottom: var(--margin-lg);}
+.mb-xl {margin-bottom: var(--margin-xl);}
+.mb-xxl {margin-bottom: var(--margin-xxl);}
+.mb-xxxl {margin-bottom: var(--margin-xxxl);}
+.mb-4xl {margin-bottom: var(--margin-4xl);}
+
+.ml-0 {margin-left: var(--margin-0);}
+.ml-xs {margin-left: var(--margin-xs);}
+.ml-sm {margin-left: var(--margin-sm);}
+.ml {margin-left: var(--margin-base);}
+.ml-md {margin-left: var(--margin-md);}
+.ml-lg {margin-left: var(--margin-lg);}
+.ml-xl {margin-left: var(--margin-xl);}
+.ml-xxl {margin-left: var(--margin-xxl);}
+.ml-xxxl {margin-left: var(--margin-xxxl);}
+.ml-4xl {margin-left: var(--margin-4xl);}
+
+.mr-0 {margin-right: var(--margin-0);}
+.mr-xs {margin-right: var(--margin-xs);}
+.mr-sm {margin-right: var(--margin-sm);}
+.mr {margin-right: var(--margin-base);}
+.mr-md {margin-right: var(--margin-md);}
+.mr-lg {margin-right: var(--margin-lg);}
+.mr-xl {margin-right: var(--margin-xl);}
+.mr-xxl {margin-right: var(--margin-xxl);}
+.mr-xxxl {margin-right: var(--margin-xxxl);}
+.mr-4xl {margin-right: var(--margin-4xl);}
+
+/* large */
+@media (min-width: 992px) {
+  .mb-xxxl {margin-bottom: 7.2rem;}
+}
