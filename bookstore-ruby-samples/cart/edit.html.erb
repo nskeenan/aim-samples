@@ -1,0 +1,228 @@
+<% header_title title("Check Out") %>
+
+<div class="cart-checkout cart-payment">
+
+  <div class="cart-overview mar-bottom">
+
+    <div class="row checkout-headings hidden-xs">
+      <div class="col-xs-12 col-sm-8">
+        Product
+      </div>
+      <div class="col-xs-12 col-sm-2">
+        Item Total
+      </div>
+      <div class="col-xs-8 col-sm-2 text-right">
+        Quantity
+      </div>
+    </div>
+
+    <% @cart.order_items.each do |line_item| %>
+    <div class="row product-line-item">
+      <div class="col-xs-12 col-sm-8 line-item-description pad-xs-bottom-sm">
+        <%= link_to( line_item.book_product.book.title, book_path(line_item.book_product.book) ) %><br>
+        <small><%= line_item.book_product.display_name %></small>
+      </div>
+      <div class="col-xs-6 col-sm-2 line-item-subtotal">
+        <%= number_to_currency( line_item.subtotal ) %>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <span class="hidden-sm hidden-md hidden-lg">Qty:</span> <span class="item-quantity-value"><%= line_item.quantity %></span>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="row order-total order-total-subtotal">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Subtotal</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.subtotal ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-shipping">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Shipping</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.shipping_cost ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-shipping">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Sales Tax</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.sales_tax ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-total">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Total <span class="hidden-xs">Due at Checkout</span></strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.total ) %>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-8 mar-bottom">
+      <%= link_to "Edit Your Order", cart_path, class: "btn btn-default btn-block btn-lg" %>
+    </div>
+  </div>
+
+  <%= form_for @cart, url: payment_path do |f| %>
+
+    <div class="row">
+
+      <div class="col-xs-12 mar-top">
+        <div class="h3">Contact and Shipping Information</div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 form-group">
+        <%= f.label :customer_first_name, "First Name" %>
+        <%= f.text_field :customer_first_name, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 form-group">
+        <%= f.label :customer_last_name, "Last Name" %>
+        <%= f.text_field :customer_last_name, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 form-group">
+        <%= f.label :customer_email_address, "Email Address" %>
+        <%= f.text_field :customer_email_address, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 form-group">
+        <%= f.label :customer_phone_number, "Phone Number" %>
+        <%= f.text_field :customer_phone_number, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 form-group">
+        <%= f.label :customer_ship_address, "Address" %>
+        <%= f.text_field :customer_ship_address, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 form-group">
+        <%= f.label :customer_ship_city, "City" %>
+        <%= f.text_field :customer_ship_city, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 form-group">
+        <%= f.label :customer_ship_state, "State" %>
+        <!--<%= f.text_field :customer_ship_state, class: "form-control" %>-->
+        <%= f.select(:customer_ship_state, ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'], {}, { :class => 'form-control' }) %>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 form-group">
+        <%= f.label :customer_ship_zip, "Zip" %>
+        <%= f.text_field :customer_ship_zip, class: "form-control" %>
+      </div>
+    </div>
+
+    <% if false %>
+      <div class="row">
+        <%= fields_for @payment do |p| %>
+          <div class="col-xs-12 mar-top">
+            <div class="h3">Payment Information</div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 form-group">
+            <%= p.label :cc_first_name, "First Name on Card" %>
+            <%= p.text_field :cc_first_name, class: "form-control" %>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <%= p.label :cc_last_name, "Last Name on Card" %>
+            <%= p.text_field :cc_last_name, class: "form-control" %>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 form-group">
+            <%= p.label :cc_num, "Card Number" %>
+            <%= p.text_field :cc_num, class: "form-control" %>
+          </div>
+
+          <% if false %>
+          <div class="col-xs-12 col-sm-2 form-group">
+            <%= p.label :cc_type, "Card Type" %>
+            <%= p.select :cc_type, class: "form-control" %>
+            <%= f.select(:cc_type, [
+              ['visa', "Visa"],
+              ['mastercard', "Mastercard"],
+              ['american express', "American Express"],
+            ], {}, { :class => 'form-control' }) %>
+          </div>
+          <% end %>
+
+          <div class="col-xs-6 col-sm-3 form-group">
+            <%= p.label :cc_exp_month, "Card expiration" %>
+            <div class="row">
+              <div class="col-xs-6">
+                <%
+                month_range = 1 .. 12
+                month_options = month_range.collect do |month|
+                  val = month.to_s.rjust(2, "0")
+                  [val, val]
+                end
+                %>
+                <%= p.select :cc_exp_month, month_options, {include_blank: "--"}, {class: 'form-control'} %>
+              </div>
+              <div class="col-xs-6">
+                <%
+                year_range = Date.today.year .. 10.years.from_now.year
+                year_options = (year_range).collect do |year|
+                  [year - 2000, year]
+                end
+                %>
+                <%= p.select :cc_exp_year, year_options, {include_blank: "--"}, {class: 'form-control'} %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 form-group">
+            <%= p.label :cc_cvv, "CVV Code" %>
+            <%= p.text_field :cc_cvv, class: 'form-control' %>
+          </div>
+
+          <div class="col-xs-12 mar-top">
+            <div class="h3">Billing Address</div>
+          </div>
+
+          <div class="col-xs-12 form-group">
+            <%= p.label :billing_address, "Address" %>
+            <%= p.text_field :billing_address, class: 'form-control' %>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 form-group">
+            <%= p.label :billing_city, "City" %>
+            <%= p.text_field :billing_city, class: 'form-control' %>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 form-group">
+            <%= p.label :billing_state, "State" %>
+            <%= p.select(:billing_state, USState.all, {}, { :class => 'form-control' }) %>
+          </div>
+
+          <div class="col-xs-6 col-sm-3 form-group">
+            <%= p.label :billing_zip, "Zip" %>
+            <%= p.text_field :billing_zip, class: 'form-control' %>
+          </div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-6 mar-top">
+        <p>Complete your order by securely processing payment with PayPal. You will be redirected to the Pay Pal website to enter payment information.</p>
+        <%= f.submit "Complete Payment", class: "btn btn-primary btn-block btn-lg" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

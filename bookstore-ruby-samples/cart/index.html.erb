@@ -1,0 +1,98 @@
+<% header_title title("Review Your Order") %>
+
+<div class="cart-checkout cart-review">
+
+  <div class="cart-overview mar-bottom">
+
+    <div class="row checkout-headings hidden-xs">
+      <div class="col-xs-12 col-sm-6">
+        Product
+      </div>
+      <div class="col-xs-12 col-sm-2">
+        Item Total
+      </div>
+      <div class="col-xs-8 col-sm-2 text-center">
+        Quantity
+      </div>
+      <div class="col-xs-4 col-sm-2 text-center">
+        Remove
+      </div>
+    </div>
+
+    <% @cart.order_items.each do |line_item| %>
+    <div class="row product-line-item">
+      <div class="col-xs-12 col-sm-6 line-item-description pad-xs-bottom-sm">
+        <strong><%= link_to( line_item.book_product.book.title, book_path(line_item.book_product.book) ) %></strong><br>
+        <small><%= line_item.book_product.display_name %></small>
+      </div>
+      <div class="col-xs-12 col-sm-2 line-item-subtotal pad-xs-bottom-sm">
+        <%= number_to_currency( line_item.subtotal ) %>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-center-sm">
+        <div class="btn-group line-item-quantity">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="hidden-sm hidden-md hidden-lg">Qty:</span> <span class="item-quantity-value"><%= line_item.quantity %></span> <i class="fa fa-caret-down"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-block dropdown-menu-scroll">
+            <% (1..20).each do |i| %>
+            <li><%= link_to i, "#update", class: 'line-item-update-trigger', 'data-line-item-id' => line_item.id, 'data-line-item-quantity' => i %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-2 line-item-remove text-center">
+        <div class="hidden-sm hidden-md hidden-lg"><%= link_to "Remove ".html_safe + content_tag(:i, "", class: "fa fa-close text-danger"), "#remove", class: 'line-item-destroy-trigger btn btn-text btn-block', 'data-line-item-id' => line_item.id %></div>
+        <div class="hidden-xs"><%= link_to content_tag(:i, "", class: "fa fa-close text-danger"), "#remove", class: 'line-item-destroy-trigger btn btn-text btn-block', 'data-line-item-id' => line_item.id %></div>
+      </div>
+
+      <%= form_for line_item, html: { class: "col-xs-12 hidden-xs hidden-sm hidden-md hidden-lg" } do |f| %>
+      <%= f.label :quantity, "Line Item Quantity" %>
+      <%= f.text_field :quantity, id: "order-item-quantity-#{f.object.id}", class: 'order-item-quantity' %>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="row order-total order-total-subtotal">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Subtotal</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.subtotal ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-shipping">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Shipping</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.shipping_cost ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-total">
+      <div class="col-xs-6 col-sm-10 text-right-sm">
+        <strong>Order Total</strong>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <%= number_to_currency( @cart.total ) %>
+      </div>
+    </div>
+
+  </div>
+
+  <%= form_for @cart, method: :post, url: checkout_path do |f| %>
+    <div class="row action-options mar-bottom">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-8 mar-bottom">
+        <%= f.label :tax_state, "Select Your Billing State" %>
+        <%= f.select(:tax_state, USState.all, {prompt: '--'}, { :class => 'form-control' }) %>
+      </div>
+      <div class="col-xs-12 col-sm-4 mar-bottom">
+        <%= link_to "Continue Shopping", root_path, class: "btn btn-default btn-block btn-lg" %>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <%= f.submit "Complete Order", class: "btn btn-primary btn-block btn-lg" %>
+      </div>
+    </div>
+  <% end %>
+</div>

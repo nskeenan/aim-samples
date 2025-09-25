@@ -1,0 +1,89 @@
+<% header_title title("Order Complete") %>
+
+<div class="h3">Thank You for Your Order</div>
+<p>An email confirmation has been sent to <strong><%= @cart.customer_email_address %></strong>.</p>
+
+<div class="cart-checkout cart-complete">
+
+  <div class="row mar-bottom-xl">
+    <div class="col-xs-12 col-sm-6">
+      <div class="h2">Shipped To</div>
+      <p>
+        <div><%= @cart.customer_first_name %> <%= @cart.customer_last_name %></div>
+        <div>Email: <%= @cart.customer_email_address %></div>
+        <div>Phone: <%= @cart.customer_phone_number %></div>
+        <div><%= @cart.customer_ship_address %></div>
+        <div><%= @cart.customer_ship_city %>, <%= @cart.customer_ship_state %> <%= @cart.customer_ship_zip %></div>
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-6 text-right">
+      <div class="h2">Confirmation</div>
+      <p>
+        <div><strong>Payment Completed:</strong><br>
+        <%= @cart.paid_at.strftime("%m/%d/%Y %l:%M %p") %><br><br></div>
+        <div><strong>Confirmation Number:</strong><br>
+        <%= @cart.confirmation %></div>
+      </p>
+    </div>
+  </div>
+
+  <div class="cart-overview mar-bottom">
+    <div class="row checkout-headings hidden-xs">
+      <div class="col-xs-12 col-sm-8">
+        Product
+      </div>
+      <div class="col-xs-12 col-sm-2">
+        Item Total
+      </div>
+      <div class="col-xs-8 col-sm-2 text-right">
+        Quantity
+      </div>
+    </div>
+
+    <% @cart.order_items.each do |line_item| %>
+    <div class="row product-line-item">
+      <div class="col-xs-12 col-sm-8 line-item-description">
+        <%= link_to( line_item.book_product.book.title, book_path(line_item.book_product.book) ) %><br>
+        <div><small><%= line_item.book_product.display_name %></small></div>
+        <% if ! line_item.book_product.downloadable_file.url.blank? %>
+          <% line_item.book_product.downloadable_file.current_path %>
+          <div><small><%= link_to '<i class="fa fa-cloud-download"></i> Download This E-Book'.html_safe, product_download_path( @cart.guid, line_item.book_product.id), class: "btn btn-sm btn-primary" %></small></div>
+        <% end %>
+      </div>
+      <div class="col-xs-6 col-sm-2 line-item-subtotal">
+        <%= number_to_currency( line_item.subtotal ) %>
+      </div>
+      <div class="col-xs-6 col-sm-2 text-right">
+        <span class="hidden-sm hidden-md hidden-lg">Qty:</span> <span class="item-quantity-value"><%= line_item.quantity %></span>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="row order-total order-total-subtotal">
+      <div class="col-xs-5 col-sm-5 col-md-10 col-lg-10 text-right-sm">
+        <strong>Subtotal</strong>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 text-right">
+        <%= number_to_currency( @cart.subtotal ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-shipping">
+      <div class="col-xs-5 col-sm-5 col-md-10 col-lg-10 text-right-sm">
+        <strong>Shipping</strong>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 text-right">
+        <%= number_to_currency( @cart.shipping_cost ) %>
+      </div>
+    </div>
+
+    <div class="row order-total order-total-total">
+      <div class="col-xs-5 col-sm-5 col-md-10 col-lg-10 text-right-sm">
+        <strong>Total Paid</strong>
+      </div>
+      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 text-right">
+        <%= number_to_currency( @cart.total ) %>
+      </div>
+    </div>
+  </div>
+</div>
